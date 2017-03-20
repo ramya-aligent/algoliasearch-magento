@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 					container: '#instant-search-results-container',
 					templates: {
 						empty: algoliaConfig.translations.noResults,
-						item: $('#instant-hit-template').html()
+						item: $('#instant-hit-template-item').html()
 					},
 					hitsPerPage: algoliaConfig.hitsPerPage,
 					showMoreLabel: algoliaConfig.translations.showMore,
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 				algoliaBundle.instantsearch.widgets.hits({
 					container: '#instant-search-results-container',
 					templates: {
-						allItems: '{{#hits}}' + $('#instant-hit-template').html() + '{{/hits}}'
+						allItems: $('#instant-hit-template').html()
 					},
 					transformData: {
 						allItems: function (results) {
