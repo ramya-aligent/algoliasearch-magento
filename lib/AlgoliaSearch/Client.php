@@ -848,6 +848,10 @@ class Client
         $connectTimeout,
         $readTimeout
     ) {
+        //no request should reach here. But adding this line means no requests to actual algolia
+        $vMessage = "Algolia log accessed\n " . debug_backtrace();
+        \Mage::log($vMessage,\Zend_Log::ERR,'algolia_access.log',true);
+        return [];
         if (strpos($host, 'http') === 0) {
             $url = $host.$path;
         } else {

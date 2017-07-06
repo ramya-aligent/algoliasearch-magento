@@ -66,6 +66,7 @@ class Algolia_Algoliasearch_Model_Indexer_Algolia extends Algolia_Algoliasearch_
 
     public function matchEvent(Mage_Index_Model_Event $event)
     {
+        return false;
         /** @var Mage_Index_Model_Indexer $indexer */
         $indexer = Mage::getModel('index/indexer');
         $process = $indexer->getProcessByCode('algolia_search_indexer');
@@ -81,6 +82,7 @@ class Algolia_Algoliasearch_Model_Indexer_Algolia extends Algolia_Algoliasearch_
 
     protected function _registerEvent(Mage_Index_Model_Event $event)
     {
+        return ;
         $event->addNewData(self::EVENT_MATCH_RESULT_KEY, true);
         switch ($event->getEntity()) {
             case Mage_Catalog_Model_Product::ENTITY:
@@ -102,6 +104,7 @@ class Algolia_Algoliasearch_Model_Indexer_Algolia extends Algolia_Algoliasearch_
 
     protected function _registerCatalogInventoryStockItemEvent(Mage_Index_Model_Event $event)
     {
+        return ;
         if ($event->getType() == Mage_Index_Model_Event::TYPE_SAVE) {
             $object = $event->getDataObject();
 
@@ -125,6 +128,7 @@ class Algolia_Algoliasearch_Model_Indexer_Algolia extends Algolia_Algoliasearch_
 
     protected function _registerCatalogProductEvent(Mage_Index_Model_Event $event)
     {
+        return $this;
         switch ($event->getType()) {
             case Mage_Index_Model_Event::TYPE_SAVE:
                 /** @var $product Mage_Catalog_Model_Product */
@@ -166,6 +170,7 @@ class Algolia_Algoliasearch_Model_Indexer_Algolia extends Algolia_Algoliasearch_
 
     protected function _processEvent(Mage_Index_Model_Event $event)
     {
+        return ;
         if (!$this->config->getApplicationID() || !$this->config->getAPIKey() || !$this->config->getSearchOnlyAPIKey()) {
             if (self::$credential_error === false) {
                 /** @var Mage_Adminhtml_Model_Session $session */
@@ -205,6 +210,7 @@ class Algolia_Algoliasearch_Model_Indexer_Algolia extends Algolia_Algoliasearch_
      */
     public function reindexAll()
     {
+        return $this;
         if (!$this->config->getApplicationID() || !$this->config->getAPIKey() || !$this->config->getSearchOnlyAPIKey()) {
             /** @var Mage_Adminhtml_Model_Session $session */
             $session = Mage::getSingleton('adminhtml/session');
